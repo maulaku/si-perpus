@@ -10,5 +10,5 @@ package model;
  * @author puspa
  */
 public class Mahasiswa extends Pengguna{
-
+ 
 }
