@@ -11,4 +11,7 @@ package model;
  */
 public interface Peminjam {
 
+    public static int MAX_KOLEKSI_PINJAM=10;
+    public void pinjam(Koleksi koleksi);
+    public int hitungDenda();
 }
