@@ -2,7 +2,6 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package model;
 
 import java.util.Date;
@@ -20,7 +19,7 @@ public class Koleksi {
     private Date tanggalPinjam;
     private Date tanggalKembali;
 
-     /**
+    /**
      * Fungsi membaca atribut tanggalPinjam
      * @return the tanggalPinjam
      */
@@ -108,4 +107,17 @@ public class Koleksi {
         this.tahunTerbit = tahunTerbit;
     }
 
+    public int lamaPinjam(Date tanggalPinjam, Date tanggalKembali) {
+        int result =(int) (tanggalKembali.getTime() - tanggalPinjam.getTime()
+                / (1000 * 60 * 60 * 24));
+        return result;
+    }
+
+    public int lamaPinjam() {
+        return lamaPinjam(tanggalPinjam,tanggalKembali);
+    }
+
+    public int hitungDenda(){
+        return 0;
+    }
 }
