@@ -108,7 +108,7 @@ public class Koleksi {
     }
 
     public int lamaPinjam(Date tanggalPinjam, Date tanggalKembali) {
-        int result =(int) (tanggalKembali.getTime() - tanggalPinjam.getTime()
+        int result =(int) ((tanggalKembali.getTime() - tanggalPinjam.getTime())
                 / (1000 * 60 * 60 * 24));
         return result;
     }

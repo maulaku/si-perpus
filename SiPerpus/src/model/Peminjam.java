@@ -10,8 +10,6 @@ package model;
  * @author puspa
  */
 public interface Peminjam {
-
-    public static int MAX_KOLEKSI_PINJAM=10;
-    public void pinjam(Koleksi koleksi);
+    public void tambahPinjaman(Koleksi koleksi);
     public int hitungDenda();
 }

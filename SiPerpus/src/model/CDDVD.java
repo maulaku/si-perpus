@@ -4,13 +4,16 @@
  */
 package model;
 
+import java.util.Date;
+
 /**
  *
  * @author puspa
  */
-public class CDDVD {
+public class CDDVD extends Koleksi{
 
     public static int WAKTU_PINJAM = 7; // 7 hari
+    public static int BIAYA_DENDA  = 2000; // biaya denda per hari
     private String ISBN;
 
     /**
@@ -26,4 +29,18 @@ public class CDDVD {
     public void setISBN(String ISBN) {
         this.ISBN = ISBN;
     }
+        public boolean isTerlambat(Date tanggalPinjam,Date tanggalKembali){
+        if(super.lamaPinjam(tanggalPinjam, tanggalKembali) > WAKTU_PINJAM)
+            return true;
+        else
+            return false;
+    }
+
+    public boolean isTerlambat(){
+        if(super.lamaPinjam(super.getTanggalPinjam(), super.getTanggalKembali()) > WAKTU_PINJAM)
+            return true;
+        else
+            return false;
+    }
+
 }
