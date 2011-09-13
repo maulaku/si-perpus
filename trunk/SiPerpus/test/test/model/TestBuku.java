@@ -23,7 +23,6 @@ public class TestBuku {
                 testBuku.lamaPinjam(new Date(111,6,1), new Date(111,8,1)));
 
         System.out.println("Terlambat ="+
-                testBuku.isTerlambat(new Date(111,6,1), new Date(111,8,1)));
-
+                testBuku.isTerlambat(new Date(111,6,1), new Date(111,8,1)));       
     }
 }

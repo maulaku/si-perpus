@@ -4,17 +4,20 @@
  */
 package model;
 
+import java.util.ArrayList;
+
 /**
  *
  * @author puspa
  */
-public class Pengguna implements Peminjam{
+public class Pengguna implements Peminjam {
+
     private String nama;
     private String alamat;
-    public static int MAX_KOLEKSI_PINJAMAN=10;
-    private int jumlahPinjaman=0;
-    private Koleksi pinjaman[]= new Koleksi[MAX_KOLEKSI_PINJAMAN];
-    
+    public static int MAX_KOLEKSI_PINJAMAN = 10;
+    private int jumlahPinjaman = 0;
+    private Koleksi pinjaman[] = new Koleksi[MAX_KOLEKSI_PINJAMAN];
+
     /**
      * Konstruktor
      */
@@ -30,7 +33,6 @@ public class Pengguna implements Peminjam{
         this.nama = nama;
         this.alamat = alamat;
     }
-
 
     /**
      * Fungsi mengambil atau membaca atribut nama
@@ -82,15 +84,51 @@ public class Pengguna implements Peminjam{
         this.jumlahPinjaman = jumlahPinjaman;
     }
 
-   public void tambahPinjaman(Koleksi kol) {
+    public void tambahPinjaman(Koleksi kol) {
         if (jumlahPinjaman < MAX_KOLEKSI_PINJAMAN) {
             pinjaman[jumlahPinjaman] = kol;
             jumlahPinjaman++;
         } else {
-            System.out.println("Jumlah pinjaman sudah lebih dari 10");
+            System.out.println("Jumlah pinjaman sudah lebih dari "
+                    + MAX_KOLEKSI_PINJAMAN);
+        }
+    }
+    private ArrayList<Koleksi> daftarPinjaman = new ArrayList<Koleksi>();
+
+    public void tambahDaftarPinjaman(Koleksi kol) {
+        if (daftarPinjaman.isEmpty()) {
+            // daftar Pinjaman kosong
+            daftarPinjaman.add(kol);
+        } else {
+            // daftar Pinjaman isi
+            if (daftarPinjaman.size() < MAX_KOLEKSI_PINJAMAN) {
+                // jumlah Pinjaman kurang dari maksimum
+                daftarPinjaman.add(kol);
+            } else {
+                // jumlah Pinjaman lebih dari maksimum
+                System.out.println("Jumlah pinjaman sudah lebih dari "
+                        + MAX_KOLEKSI_PINJAMAN);
+            }
         }
     }
 
+    public boolean adaKoleksi(Koleksi kol) {
+        return daftarPinjaman.contains(kol);
+    }
+
+    public void kembalikanPinjaman(Koleksi kol) {
+        if (daftarPinjaman.isEmpty()) {
+            System.out.println("Belum pernah minjam");
+        } else {
+            if (!adaKoleksi(kol)) {
+                // pinjaman ada di daftar pinjam
+                daftarPinjaman.remove(kol);
+            } else{
+                // koleksi tidak ada di daftar pinjaman
+                System.out.println("Tidak ada koleksi di daftar");
+            }
+        }
+    }
 
     public String tampilPinjaman() {
         String result = "";
@@ -103,5 +141,4 @@ public class Pengguna implements Peminjam{
         }
         return result;
     }
-
 }

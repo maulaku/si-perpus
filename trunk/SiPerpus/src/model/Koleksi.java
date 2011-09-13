@@ -120,4 +120,8 @@ public class Koleksi {
     public int hitungDenda(){
         return 0;
     }
+
+    public int comparableTo(Koleksi koleksi){
+        return this.idKoleksi.compareToIgnoreCase(koleksi.getIdKoleksi());
+    }
 }
