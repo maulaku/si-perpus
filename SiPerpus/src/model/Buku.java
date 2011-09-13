@@ -43,7 +43,6 @@ public class Buku extends Koleksi{
         else
             return false;
     }
-
     
 
 }
