@@ -17,6 +17,7 @@ public class Pengguna implements Peminjam {
     public static int MAX_KOLEKSI_PINJAMAN = 10;
     private int jumlahPinjaman = 0;
     private Koleksi pinjaman[] = new Koleksi[MAX_KOLEKSI_PINJAMAN];
+    private ArrayList<Koleksi> daftarPinjaman = new ArrayList<Koleksi>();
 
     /**
      * Konstruktor
@@ -93,7 +94,6 @@ public class Pengguna implements Peminjam {
                     + MAX_KOLEKSI_PINJAMAN);
         }
     }
-    private ArrayList<Koleksi> daftarPinjaman = new ArrayList<Koleksi>();
 
     public void tambahDaftarPinjaman(Koleksi kol) {
         if (daftarPinjaman.isEmpty()) {
@@ -123,11 +123,23 @@ public class Pengguna implements Peminjam {
             if (!adaKoleksi(kol)) {
                 // pinjaman ada di daftar pinjam
                 daftarPinjaman.remove(kol);
-            } else{
+            } else {
                 // koleksi tidak ada di daftar pinjaman
                 System.out.println("Tidak ada koleksi di daftar");
             }
         }
+    }
+
+    public String tampilDaftarPinjaman(){
+        String result = "";
+        if(daftarPinjaman.isEmpty()){
+            System.out.println("anda tidak pinjam apa-apa");
+        } else{
+            for (int i = 0; i < daftarPinjaman.size(); i++) {
+                result+=daftarPinjaman.get(i).getJudul()+"\n";
+            }
+        }
+        return result;
     }
 
     public String tampilPinjaman() {
