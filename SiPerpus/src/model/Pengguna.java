@@ -88,9 +88,13 @@ public class Pengguna implements Peminjam {
     }
 
     
-    
-    public void tambahDaftarPinjaman(Koleksi kol,Date tanggalPinjam) {
-        Koleksi tempPinjam = new Koleksi();
+    /**
+     * Fungsi untuk menambah daftar pinjaman
+     * @param kolPinjam
+     * @param tanggalPinjam
+     */
+    public void tambahDaftarPinjaman(Koleksi kolPinjam,Date tanggalPinjam) {
+        Koleksi tempPinjam = kolPinjam;
         tempPinjam.setTanggalPinjam(tanggalPinjam);
         if (daftarPinjaman.isEmpty()) {
             // daftar Pinjaman kosong
