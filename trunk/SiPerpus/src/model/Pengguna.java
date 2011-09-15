@@ -5,6 +5,7 @@
 package model;
 
 import java.util.ArrayList;
+import java.util.Date;
 
 /**
  *
@@ -15,8 +16,6 @@ public class Pengguna implements Peminjam {
     private String nama;
     private String alamat;
     public static int MAX_KOLEKSI_PINJAMAN = 10;
-    private int jumlahPinjaman = 0;
-    private Koleksi pinjaman[] = new Koleksi[MAX_KOLEKSI_PINJAMAN];
     private ArrayList<Koleksi> daftarPinjaman = new ArrayList<Koleksi>();
 
     /**
@@ -68,42 +67,46 @@ public class Pengguna implements Peminjam {
     }
 
     public int hitungDenda() {
-        throw new UnsupportedOperationException("Not supported yet.");
+        return 0;
     }
 
     /**
-     * @return the jumlahPinjaman
+     * Fungsi untuk menghitung total denda di daftar pinjaman
+     * @param tanggalPinjam
+     * @return
      */
-    public int getJumlahPinjaman() {
-        return jumlahPinjaman;
-    }
-
-    /**
-     * @param jumlahPinjaman the jumlahPinjaman to set
-     */
-    public void setJumlahPinjaman(int jumlahPinjaman) {
-        this.jumlahPinjaman = jumlahPinjaman;
-    }
-
-    public void tambahPinjaman(Koleksi kol) {
-        if (jumlahPinjaman < MAX_KOLEKSI_PINJAMAN) {
-            pinjaman[jumlahPinjaman] = kol;
-            jumlahPinjaman++;
+    public int hitungDenda(Date tanggalPinjam) {
+        int result = 0;
+        if (adaDaftarPinjamanTerlambat(tanggalPinjam)) {
+            for (int i = 0; i < daftarPinjaman.size(); i++) {
+                result = result + daftarPinjaman.get(i).hitungDenda(tanggalPinjam);
+            }
+            return result;
         } else {
-            System.out.println("Jumlah pinjaman sudah lebih dari "
-                    + MAX_KOLEKSI_PINJAMAN);
+            return 0;
         }
     }
 
-    public void tambahDaftarPinjaman(Koleksi kol) {
+    
+    
+    public void tambahDaftarPinjaman(Koleksi kol,Date tanggalPinjam) {
+        Koleksi tempPinjam = new Koleksi();
+        tempPinjam.setTanggalPinjam(tanggalPinjam);
         if (daftarPinjaman.isEmpty()) {
             // daftar Pinjaman kosong
-            daftarPinjaman.add(kol);
+            daftarPinjaman.add(tempPinjam);
         } else {
             // daftar Pinjaman isi
             if (daftarPinjaman.size() < MAX_KOLEKSI_PINJAMAN) {
                 // jumlah Pinjaman kurang dari maksimum
-                daftarPinjaman.add(kol);
+                // cek terlambat
+                if (!adaDaftarPinjamanTerlambat(tanggalPinjam)) {
+                    // tidak ada yang terlambat
+                    daftarPinjaman.add(tempPinjam);
+                } else {
+                    // ada yang terlamabat
+                    System.out.println("Ada pinjaman terlambat");
+                }
             } else {
                 // jumlah Pinjaman lebih dari maksimum
                 System.out.println("Jumlah pinjaman sudah lebih dari "
@@ -112,6 +115,41 @@ public class Pengguna implements Peminjam {
         }
     }
 
+    /**
+     * Fungsi untuk mengetahui ada tidaknya pinjaman yang terlambat
+     * @param tanggalPinjam adalah tanggal pinjam koleksi
+     * @param tanggalKembali adalah tanggal kembali koleksi
+     * @return
+     */
+    public boolean adaDaftarPinjamanTerlambat(Date tanggalPinjam, Date tanggalKembali) {
+        for (int i = 0; i < daftarPinjaman.size(); i++) {
+            if (daftarPinjaman.get(i).isTerlambat(tanggalPinjam, tanggalKembali)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    /**
+     * Fungsi untuk mengetahui ada tidaknya pinjaman yang terlambat
+     * @param tanggalKembali adalah tanggal kembali koleksi
+     * @return
+     */
+    public boolean adaDaftarPinjamanTerlambat(Date tanggalKembali) {
+        for (int i = 0; i < daftarPinjaman.size(); i++) {
+            Date tanggalPinjam = daftarPinjaman.get(i).getTanggalPinjam();
+            if (daftarPinjaman.get(i).isTerlambat(tanggalPinjam, tanggalKembali)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    /**
+     * Fungsi untuk mengetahui ada tidaknya koleksi dalam daftar pinjaman
+     * @param kol adalah koleksi yang ingin dicari
+     * @return
+     */
     public boolean adaKoleksi(Koleksi kol) {
         return daftarPinjaman.contains(kol);
     }
@@ -144,11 +182,12 @@ public class Pengguna implements Peminjam {
 
     public String tampilPinjaman() {
         String result = "";
-        if (jumlahPinjaman < 1) {
+        if (daftarPinjaman.isEmpty()) {
             result = "anda tidak pinjam apa-apa";
         } else {
-            for (int i = 0; i < jumlahPinjaman; i++) {
-                result = result + pinjaman[i].getJudul() + "\n";
+            for (int i = 0; i < daftarPinjaman.size(); i++) {
+                result = result + daftarPinjaman.get(i).getJudul() +"\t"
+                        +daftarPinjaman.get(i).getTanggalPinjam() + "\n";
             }
         }
         return result;

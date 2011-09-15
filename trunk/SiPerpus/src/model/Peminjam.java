@@ -5,11 +5,13 @@
 
 package model;
 
+import java.util.Date;
+
 /**
  *
  * @author puspa
  */
 public interface Peminjam {
-    public void tambahPinjaman(Koleksi koleksi);
-    public int hitungDenda();
+    public void tambahDaftarPinjaman(Koleksi koleksi,Date tanggalPinjam);
+    public int hitungDenda(Date tanggalPinjam);
 }

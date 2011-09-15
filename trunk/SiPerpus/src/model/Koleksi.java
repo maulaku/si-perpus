@@ -108,20 +108,28 @@ public class Koleksi {
     }
 
     public int lamaPinjam(Date tanggalPinjam, Date tanggalKembali) {
-        int result =(int) ((tanggalKembali.getTime() - tanggalPinjam.getTime())
+        int result = (int) ((tanggalKembali.getTime() - tanggalPinjam.getTime())
                 / (1000 * 60 * 60 * 24));
         return result;
     }
 
     public int lamaPinjam() {
-        return lamaPinjam(tanggalPinjam,tanggalKembali);
+        return lamaPinjam(tanggalPinjam, tanggalKembali);
     }
 
-    public int hitungDenda(){
+    public int hitungDenda(Date tanggalKembali) {
         return 0;
     }
 
-    public int comparableTo(Koleksi koleksi){
+    public int comparableTo(Koleksi koleksi) {
         return this.idKoleksi.compareToIgnoreCase(koleksi.getIdKoleksi());
+    }
+
+    public boolean isTerlambat() {
+        return false;
+    }
+
+    public boolean isTerlambat(Date tanggalPinjam,Date tanggalKembali) {
+        return false;
     }
 }
