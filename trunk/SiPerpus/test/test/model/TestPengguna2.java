@@ -20,9 +20,12 @@ public class TestPengguna2 {
 
         Buku testBuku = new Buku();
         testBuku.setJudul("Laskar Pelangi");
+        System.out.println("judul = "+testBuku.getJudul());
+
 
         Buku testBuku1 = new Buku();
         testBuku1.setJudul("Sang Pemimpi");
+        System.out.println("judul = "+testBuku1.getJudul());
 
         Date now = Calendar.getInstance().getTime();
         Date yesterday = new Date(111, 7, 1);
