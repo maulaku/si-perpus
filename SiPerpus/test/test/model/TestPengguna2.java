@@ -4,6 +4,8 @@
  */
 package test.model;
 
+import java.util.Calendar;
+import java.util.Date;
 import model.*;
 
 /**
@@ -14,23 +16,24 @@ public class TestPengguna2 {
 
     public static void main(String[] args) {
         Pengguna testPengguna = new Pengguna();
-        testPengguna.setNama("puspa");
-        System.out.println("nama = "+testPengguna.getNama());
+        testPengguna.setNama("Tesy");
 
         Buku testBuku = new Buku();
-        testBuku.setJudul("Ayat-ayat Cinta");
-
-        System.out.println(testPengguna.tampilPinjaman());
-
-        testPengguna.tambahPinjaman(testBuku);
+        testBuku.setJudul("Laskar Pelangi");
 
         Buku testBuku1 = new Buku();
-        testBuku1.setJudul("Siti Nurbaya");
+        testBuku1.setJudul("Sang Pemimpi");
 
-        testPengguna.tambahPinjaman(testBuku1);
+        Date now = Calendar.getInstance().getTime();
+        Date yesterday = new Date(111, 7, 1);
 
-        System.out.println("Peminjam = "+testPengguna.getNama());
-        System.out.println("Daftar Pinjaman ");
+        testPengguna.tambahDaftarPinjaman(testBuku, yesterday);
+        testPengguna.tambahDaftarPinjaman(testBuku1, yesterday);
+
+        System.out.println("Pengguna = "+testPengguna.getNama());
+        System.out.println("Daftar Pinjaman");
         System.out.println(testPengguna.tampilPinjaman());
+
+
     }
 }

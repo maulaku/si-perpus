@@ -30,6 +30,7 @@ public class Buku extends Koleksi{
         this.ISBN = ISBN;
     }
 
+    @Override
     public boolean isTerlambat(Date tanggalPinjam,Date tanggalKembali){
         if(super.lamaPinjam(tanggalPinjam, tanggalKembali) > WAKTU_PINJAM)
             return true;
@@ -37,12 +38,34 @@ public class Buku extends Koleksi{
             return false;
     }
 
+    @Override
     public boolean isTerlambat(){
-        if(super.lamaPinjam(super.getTanggalPinjam(), super.getTanggalKembali()) > WAKTU_PINJAM)
+        if(isTerlambat(super.getTanggalPinjam(),super.getTanggalKembali()))
             return true;
         else
             return false;
     }
-    
 
+    public int lamaHariTerlambat(Date tanggalKembali){
+        Date tanggalPinjam = super.getTanggalPinjam();
+        if (isTerlambat(tanggalPinjam,tanggalKembali)){
+            // terlambat
+            return super.lamaPinjam(tanggalPinjam, tanggalKembali)- WAKTU_PINJAM;
+        } else{
+            // tidak terlambat
+            return 0;
+        }
+    }
+
+    @Override
+    public int hitungDenda(Date tanggalKembali) {
+        Date tanggalPinjam = super.getTanggalPinjam();
+        if (isTerlambat(tanggalPinjam,tanggalKembali)){
+            // terlambat
+            return this.lamaHariTerlambat(tanggalKembali)*BIAYA_DENDA;
+        } else{
+            // tidak terlambat
+            return 0;
+        }
+    }
 }

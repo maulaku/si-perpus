@@ -16,6 +16,7 @@ public class TestDate {
     public static void main(String[] args) {
         Date now = Calendar.getInstance().getTime();
         Date yesterday = new Date(111,8,13);
-        System.out.println(yesterday);
+        System.out.println("now = "+now);
+        System.out.println("yesterday = "+yesterday);
     }
 }
