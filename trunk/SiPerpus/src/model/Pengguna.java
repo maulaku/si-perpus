@@ -5,6 +5,7 @@
 package model;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
 
 /**
@@ -158,11 +159,17 @@ public class Pengguna implements Peminjam {
         return daftarPinjaman.contains(kol);
     }
 
+    /**
+     * Fungsi untuk mengembalikan pinjaman koleksi
+     * @param kol adalah koleksi yang dikembalikan
+     */
     public void kembalikanPinjaman(Koleksi kol) {
+        Date now = Calendar.getInstance().getTime();
+        kol.setTanggalKembali(now);
         if (daftarPinjaman.isEmpty()) {
             System.out.println("Belum pernah minjam");
         } else {
-            if (!adaKoleksi(kol)) {
+            if (adaKoleksi(kol)) {
                 // pinjaman ada di daftar pinjam
                 daftarPinjaman.remove(kol);
             } else {
