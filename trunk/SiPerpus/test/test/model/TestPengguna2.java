@@ -44,11 +44,20 @@ public class TestPengguna2 {
         // kembalikan buku
         testPengguna.kembalikanPinjaman(testBuku);
 
-        System.out.println("Ada "+testBuku.getJudul()+" di daftar Pinjam? " +testPengguna.adaKoleksi(testBuku));
         System.out.println("Pengguna = " + testPengguna.getNama());
         System.out.println("Daftar Pinjaman");
         System.out.println(testPengguna.tampilPinjaman());
 
+        Buku testBuku2 = new Buku();
+        testBuku2.setJudul("Pemrograman Java");
+        System.out.println("judul = " + testBuku2.getJudul());
+
+        //pinjam buku
+        testPengguna.tambahDaftarPinjaman(testBuku2, now);
+
+        System.out.println("Pengguna = " + testPengguna.getNama());
+        System.out.println("Daftar Pinjaman");
+        System.out.println(testPengguna.tampilPinjaman());
 
     }
 }
