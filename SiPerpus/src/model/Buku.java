@@ -15,6 +15,7 @@ public class Buku extends Koleksi{
     public static int WAKTU_PINJAM = 42; // 42 hari
     public static int BIAYA_DENDA  = 500; // biaya denda per hari
     private String ISBN;
+    private String penulis;
 
     /**
      * @return the ISBN
@@ -67,5 +68,19 @@ public class Buku extends Koleksi{
             // tidak terlambat
             return 0;
         }
+    }
+
+    /**
+     * @return the penulis
+     */
+    public String getPenulis() {
+        return penulis;
+    }
+
+    /**
+     * @param penulis the penulis to set
+     */
+    public void setPenulis(String penulis) {
+        this.penulis = penulis;
     }
 }
