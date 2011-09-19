@@ -185,7 +185,8 @@ public class Pengguna implements Peminjam {
             System.out.println("anda tidak pinjam apa-apa");
         } else{
             for (int i = 0; i < daftarPinjaman.size(); i++) {
-                result+=daftarPinjaman.get(i).getJudul()+"\n";
+                result+=daftarPinjaman.get(i).getJudul()+"\t"
+                        +daftarPinjaman.get(i).getTanggalPinjam() + "\n";;
             }
         }
         return result;
