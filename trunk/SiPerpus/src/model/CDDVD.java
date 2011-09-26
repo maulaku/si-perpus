@@ -16,6 +16,11 @@ public class CDDVD extends Koleksi {
     public static int BIAYA_DENDA = 2000; // biaya denda per hari
     private String ISBN;
 
+    public CDDVD(String judul) {
+        super(judul);
+    }
+
+
     /**
      * @return the ISBN
      */

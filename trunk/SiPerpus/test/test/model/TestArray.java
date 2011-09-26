@@ -11,10 +11,7 @@ package test.model;
  */
 public class TestArray {
     public static void main(String[] args) {
-        int size=0;
-        int arr[] = new int[size];
-        for (int i = 0; i < arr.length; i++) {
-            System.out.println(arr[i]);
-        }
+        int arr[] = {1,2,3,4};
+        System.out.println("arr[5]"+arr[5]);
     }
 }

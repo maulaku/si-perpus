@@ -6,6 +6,8 @@ package test.model;
 
 import java.util.Calendar;
 import java.util.Date;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import model.*;
 
 /**
@@ -18,13 +20,13 @@ public class TestPengguna2 {
         Pengguna testPengguna = new Pengguna();
         testPengguna.setNama("Tesy");
 
-        Buku testBuku = new Buku();
-        testBuku.setJudul("Laskar Pelangi");
+        Buku testBuku = new Buku("Laskar Pelangi");
+//        testBuku.setJudul("Laskar Pelangi");
         System.out.println("judul = " + testBuku.getJudul());
 
 
-        Buku testBuku1 = new Buku();
-        testBuku1.setJudul("Sang Pemimpi");
+        Buku testBuku1 = new Buku("Sang Pemimpi");
+//        testBuku1.setJudul("Sang Pemimpi");
         System.out.println("judul = " + testBuku1.getJudul());
 
         Date now = Calendar.getInstance().getTime();
@@ -40,16 +42,19 @@ public class TestPengguna2 {
 
         System.out.println("terlambat = " + testPengguna.adaDaftarPinjamanTerlambat(now));
         System.out.println("denda  = " + testPengguna.hitungDenda(now));
-
-        // kembalikan buku
-        testPengguna.kembalikanPinjaman(testBuku);
+        try {
+            // kembalikan buku
+            testPengguna.kembalikanPinjaman(testBuku);
+        } catch (Exception ex) {
+            Logger.getLogger(TestPengguna2.class.getName()).log(Level.SEVERE, null, ex);
+        }
 
         System.out.println("Pengguna = " + testPengguna.getNama());
         System.out.println("Daftar Pinjaman");
         System.out.println(testPengguna.tampilPinjaman());
 
-        Buku testBuku2 = new Buku();
-        testBuku2.setJudul("Pemrograman Java");
+        Buku testBuku2 = new Buku("Pemrograman");
+//        testBuku2.setJudul("Pemrograman Java");
         System.out.println("judul = " + testBuku2.getJudul());
 
         //pinjam buku

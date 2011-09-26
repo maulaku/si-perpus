@@ -15,16 +15,16 @@ public class ArrayListTest {
     public static void main(String[] args) {
         ArrayList testArrayList = new ArrayList();
 
-        Buku testBuku = new Buku();
-        testBuku.setJudul("Siti Nurbaya");
+        Buku testBuku = new Buku("Siti Nurbaya");
+//        testBuku.setJudul("Siti Nurbaya");
         System.out.println("ukuran arrayList ="+testArrayList.size());
 
         testArrayList.add(testBuku);
         
         System.out.println("ukuran arrayList ="+testArrayList.size());
 
-        Buku testBuku2 = new Buku();
-        testBuku2.setJudul("Catatan Si Boy");
+        Buku testBuku2 = new Buku("Catatan Si Boy");
+//        testBuku2.setJudul("Catatan Si Boy");
 
         testArrayList.add(testBuku2);
 

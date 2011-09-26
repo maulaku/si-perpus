@@ -18,6 +18,11 @@ public class Majalah extends Koleksi {
     private String nomor;
     private String seri;
 
+    public Majalah(String judul) {
+        super(judul);
+    }
+
+
     /**
      * @return the ISSN
      */
