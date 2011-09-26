@@ -19,6 +19,11 @@ public class Koleksi {
     private Date tanggalPinjam;
     private Date tanggalKembali;
 
+    public Koleksi(String judul) {
+        this.judul = judul;
+    }
+
+
     /**
      * Fungsi membaca atribut tanggalPinjam
      * @return the tanggalPinjam
@@ -47,8 +52,20 @@ public class Koleksi {
      * Fungsi mengubah atribut tanggalKembali
      * @param tanggalKembali the tanggalKembali to set
      */
-    public void setTanggalKembali(Date tanggalKembali) {
-        this.tanggalKembali = tanggalKembali;
+    public void setTanggalKembali(Date tanggalKembali) throws Exception {
+        if (tanggalPinjam == null) {
+            // tanggal pinjam kosong
+            throw new Exception("Tanggal pinjam masih kosong");
+        } else {
+            // tanggal pinjam tidak kosong
+            if (tanggalKembali.before(tanggalPinjam)) {
+                // tanggal kembali lebih awal dari tanggal pinjam
+                throw new Exception("Tanggal kembali lebih awal dari tanggal pinjam");
+            } else {
+                // tanggal kembali lebih akhir dari tanggal pinjam
+                this.tanggalKembali = tanggalKembali;
+            }
+        }
     }
 
     /**
@@ -129,7 +146,7 @@ public class Koleksi {
         return false;
     }
 
-    public boolean isTerlambat(Date tanggalPinjam,Date tanggalKembali) {
+    public boolean isTerlambat(Date tanggalPinjam, Date tanggalKembali) {
         return false;
     }
 }

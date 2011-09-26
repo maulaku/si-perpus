@@ -14,7 +14,7 @@ import model.Buku;
  */
 public class TestBuku {
     public static void main(String[] args) {
-        Buku testBuku = new Buku();
+        Buku testBuku = new Buku("Judul - judulan");
 
 //        testBuku.setTanggalPinjam(new Date(111,6,1));
 //        testBuku.setTanggalKembali(new Date(111,8,1));

@@ -17,6 +17,10 @@ public class Buku extends Koleksi{
     private String ISBN;
     private String penulis;
 
+    public Buku(String judul) {
+        super(judul);
+    }
+
     /**
      * @return the ISBN
      */
