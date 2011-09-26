@@ -22,6 +22,7 @@ public class TestKoleksi2 {
             test.setTanggalKembali(new Date(111, 8, 22));
             System.out.println("Hore benar");
         } catch (Exception ex) {
+            System.out.println("pesan: "+ex.getMessage());
             Logger.getLogger(TestKoleksi2.class.getName()).log(Level.SEVERE, null, ex);
         }
 
