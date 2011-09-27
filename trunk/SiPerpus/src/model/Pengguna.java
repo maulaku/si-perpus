@@ -181,7 +181,7 @@ public class Pengguna implements Peminjam {
                 daftarPinjaman.remove(kol);
             } else {
                 // koleksi tidak ada di daftar pinjaman
-                System.out.println("Tidak ada koleksi di daftar");
+                throw new Exception("Tidak ada koleksi di daftar");
             }
         }
     }
